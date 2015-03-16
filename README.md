@@ -15,3 +15,10 @@ A 16x16 medium sudoku (copy-paste as user input to test)
 
 25x25-easy.txt  
 A 25x25 easy sudoku (copy-paste as user input to test)
+
+
+Sudoku_1.5_FixedArrayBrackets.c 	
+The previous version with fixed array sizes, 9x9 sudokus only.
+
+Sudoku_2.0_DynamicArrayAlloc.c  	
+The latest version with memory allocation.
