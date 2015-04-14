@@ -1,7 +1,9 @@
 # Sudoku
-C program which can solve any sudoku with sizes 4x4, 9x9, 16x16 and 25x25, using a iterative algorithm as described in the code and <a href=http://www.sudokuwiki.org/sudoku.htm>here</a>.
+C program which can solve any sudoku with sizes 4x4, 9x9, 16x16 and 25x25,  
+using an iterative algorithm as described in the code and <a href=http://www.sudokuwiki.org/sudoku.htm>here</a>.
 
-Sudoku's are parsed from input, continuous stream of digits for 4x4 or 9x9 sudoku's and digit separated by a white-space (space or return), both from user input or command line.  
+Sudoku's are parsed from input, continuous stream of digits for 4x4 or 9x9 sudoku's and  
+digit separated by a white-space (space or return), both from user input or command line.  
 
 
 <b>_sampleSudokus.txt</b>  
