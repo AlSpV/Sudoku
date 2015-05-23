@@ -26,7 +26,7 @@ static const int puzzleSqMax[4] = {  2,  3,  4,  5 };	//	sqrt(MAX)
 *   Maximum number value/row-/column-count.
 *		{  4,  9, 16, 25 }
 */
-#define MAX			puzzleSizes[puzzleSize]
+#define MAX		puzzleSizes[puzzleSize]
 
 /**
 *   Maximum numbers in puzzle.
@@ -228,13 +228,13 @@ void transposeSudoku() {
 */
 void printSudoku() {
 	int stripesMax = ((MAX << 1) - 1 + MAX * (MAX > 9)),	// (MAX * 2) == MAX << 1
-		crossCheck = ((Square_MAX << 1) + Square_MAX * (MAX > 9)),
-		i, j;
+	    crossCheck = ((Square_MAX << 1) + Square_MAX * (MAX > 9)),
+	    i, j;
 
 	for (i = 0; i < MAX; i++) {
 		for (j = 0; j < MAX; j++) {
 			if (sudoku[i][j])	(MAX < 16) ? printf("%d", sudoku[i][j]) : printf("%2d", sudoku[i][j]);
-			else				printf("%s", (MAX < 16) ? "." : "..");
+			else			printf("%s", (MAX < 16) ? "." : "..");
 			printf("%s", !((j + 1) % Square_MAX) && j < MAX - 1 ? "|" : " ");
 		}
 		if (!((i + 1) % Square_MAX) && i < MAX - 1) {
@@ -288,9 +288,9 @@ int solveSudokuRecur(int **sudoku, int row, int col) {
 	if (row < MAX && col < MAX) {
 		solveCalls++; //---
 		if (sudoku[row][col]) { //  Move to next square
-			if		(col + 1 < MAX)      return solveSudokuRecur(sudoku, row, col + 1);
-			else if (row + 1 < MAX)      return solveSudokuRecur(sudoku, row + 1, 0);
-			else						 return 1;
+			if	(col + 1 < MAX	return solveSudokuRecur(sudoku, row, col + 1);
+			else if (row + 1 < MAX)	return solveSudokuRecur(sudoku, row + 1, 0);
+			else			return 1;
 		}
 		else                  //  For each possible digit, try guessing
 			for (int digit = 1; digit <= MAX; digit++)
@@ -320,7 +320,7 @@ int compareTupleArray(int tuple1[], int tuple2[]) {
 int equal_ValueOrPossibility_XY(int X, int value, int pos[]) {
 	int i, ret = 1, start = 2 - X;
 	if (value < 0)	for (i = 1; i < pos[0]; i++) ret &= (pos[start] == pos[start + (i << 1)]);	// (2 * i) == (i << 1)
-	else			for (i = 0; i < pos[0]; i++) ret &= (value != pos[start + (i << 1)]);
+	else		for (i = 0; i < pos[0]; i++) ret &= (value != pos[start + (i << 1)]);
 	return ret;
 }
 
@@ -330,8 +330,8 @@ int equal_ValueOrPossibility_XY(int X, int value, int pos[]) {
 void copySudokuTo(int **from, int **to) {
 	for (int x = 0; x < MAX; x++)
 		for (int y = x; y < MAX; y++) {
-			if (x != y) to[y][x] = from[y][x];
-						to[x][y] = from[x][y];
+			if (x != y) 	to[y][x] = from[y][x];
+					to[x][y] = from[x][y];
 		}
 }
 
@@ -347,8 +347,8 @@ int solveSudokuIter(int **sudoku) {
 	for (int i = 0; i < MAX; i++)
 		for (int j = i; j < MAX; j++)
 			for (int digit = 1; digit <= MAX; digit++) {
-				if (i != j) sudokuTuples[j][i][digit - 1] = canSetNumber(j, i, digit);
-							sudokuTuples[i][j][digit - 1] = canSetNumber(i, j, digit);
+				if (i != j)	sudokuTuples[j][i][digit - 1] = canSetNumber(j, i, digit);
+						sudokuTuples[i][j][digit - 1] = canSetNumber(i, j, digit);
 			}
 
 	//Try solving
@@ -521,8 +521,8 @@ int solveSudokuIter(int **sudoku) {
 		//  X-Wing  ::  Tuple occurs only twice in row/col? => find common pair in same col/row and remove rest from col/row
 		if (!didSomething) {
 			int ***possibilitiesRow = allocArray3D(MAX, MAX, 5),	//row, tuple count, pos1_X, pos1_Y, pos2_X, pos2_Y
-				***possibilitiesCol = allocArray3D(MAX, MAX, 5),	//col
-				i, j, k;
+			    ***possibilitiesCol = allocArray3D(MAX, MAX, 5),	//col
+			    i, j, k;
 
 			for (i = 0; i < MAX; i++) {      // For row/col
 				for (j = 0; j < MAX; j++) {      //  For Each square in row/col
@@ -530,11 +530,11 @@ int solveSudokuIter(int **sudoku) {
 						for (k = 0; k < MAX; k++) {  //  For each possible value in square
 							if (sudokuTuples[i][j][k]) {
 								possibilitiesRow[i][k][0]++;                // i + 1 :: because checks if(pos), else: false if pos happens to be 0
-								if		(!possibilitiesRow[i][k][1])    { possibilitiesRow[i][k][1] = i + 1; possibilitiesRow[i][k][2] = j; }
+								if	(!possibilitiesRow[i][k][1])    { possibilitiesRow[i][k][1] = i + 1; possibilitiesRow[i][k][2] = j; }
 								else if (!possibilitiesRow[i][k][3])    { possibilitiesRow[i][k][3] = i + 1; possibilitiesRow[i][k][4] = j; }
 
 								possibilitiesCol[j][k][0]++;                // i + 1 :: because checks if(pos), else: false if pos happens to be 0
-								if		(!possibilitiesCol[j][k][1])    { possibilitiesCol[j][k][1] = i + 1; possibilitiesCol[j][k][2] = j; }
+								if	(!possibilitiesCol[j][k][1])    { possibilitiesCol[j][k][1] = i + 1; possibilitiesCol[j][k][2] = j; }
 								else if (!possibilitiesCol[j][k][3])    { possibilitiesCol[j][k][3] = i + 1; possibilitiesCol[j][k][4] = j; }
 							}
 						}
@@ -655,10 +655,10 @@ int printMsg(int solved, clock_t time) {
 /**
 *   Main method
 *       Cmd-line    ::  argc    = number of arguments
-*                       argv[]  = arguments with:   argv[0] : this program
-*                                                   argv[1] : 'n' or 'i' or 'c'
-*													argv[2] : puzzleSize
-*                                                   argv[3] : for 'n' -> char[MAX_PUZZLE] (the new puzzle)
+*                       argv[]  = arguments with:   	argv[0] : this program
+*                                                   	argv[1] : 'n' or 'i' or 'c'
+*							argv[2] : puzzleSize
+*                                                   	argv[3] : for 'n' -> char[MAX_PUZZLE] (the new puzzle)
 *       Regular     ::  Ask for (N)ew, (C)ustom or (I)nternal sudoku and tries solving
 */
 int main(int argc, char *argv[]) {
